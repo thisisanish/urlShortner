@@ -31,7 +31,6 @@
     "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-materialize": "^3.8.10",
     "save-svg-as-png": "^1.4.17",
     "validator": "^13.0.0"
   }

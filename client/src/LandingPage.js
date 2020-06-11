@@ -5,8 +5,8 @@ import validator from "validator";
 import saveSvgAsPng from "save-svg-as-png";
 
 const LandingPage = () => {
-  const title = "L'il URL"
-  const [copyStatus, setCopyStatus] = useState("Click to copy")
+  const title = "Teensy Url"
+  // const [copyStatus, setCopyStatus] = useState("Click to copy")
   const [longUrl, setLongUrl] = useState("");
   const [afterClickLongUrl, setAfterClickLongUrl] = useState("")
   const [error, setError] = useState("");
@@ -17,6 +17,8 @@ const LandingPage = () => {
     </div>
   );
 
+
+
   function getShortUrl(event) {
     event.preventDefault();
     axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -26,7 +28,7 @@ const LandingPage = () => {
       setError("");
       axios({
         method: "POST",
-        url: "http://localhost:4100/api/shorten",
+        url: "https://teensygo.herokuapp.com/api/shorten",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -39,6 +41,7 @@ const LandingPage = () => {
         .then((res) => {
           setShortUrl(res.data.shortUrl);
           setAfterClickLongUrl(longUrl)
+
  
         })
         // eslint-disable-next-line no-console
@@ -64,9 +67,11 @@ const LandingPage = () => {
       <div className="card-header text-center">{afterClickLongUrl} </div>
       <div className="card-body">
         <div className="text-center">
-          <button
+          {/* <button
+            style={{width:"100%"}}
             type="button"
-            className="btn btn-primary"
+
+            className="btn copy btn-primary"
             onClick={() => {
               navigator.clipboard.writeText(shortUrl);
               setCopyStatus("Copied Successfully :-)")
@@ -78,7 +83,13 @@ const LandingPage = () => {
               <u className="text-white text-lowercase">{shortUrl}</u>
             </h3>
             {copyStatus}
-          </button>
+          </button> */}
+          <h3 className="bg-primary p-4" style={{borderRadius:"1rem"}}>
+              <i className="fa fa-lg fa-copy text-light p-2" unselectable="true"/>
+              
+              <br/>
+              <u className="text-white text-lowercase">{shortUrl}</u>
+            </h3>
         </div>
 
         <hr />
@@ -118,21 +129,21 @@ const LandingPage = () => {
         </a>
       </nav>
       <br />
-      <div className="container">
+      <div className="container" >
         <div className="jumbotron">
           <h1 className="display-3">{title}</h1>
           <p className="lead">
-            We Generate Short little Url and QR codes that you can download and share from your Big bulky ugly Urls. ( ͡° ͜ʖ ͡°)
+            We Generate Short teensy Url and QR codes that you can download and share from your Big bulky ugly Urls.
           </p>
         </div>
         <form onSubmit={getShortUrl}>
           <div className="form-group">
-            <div className="input-group mb-3">
+            <div className="input-group mb-3" style={{fontSize:"100%"}}>
               <div className="input-group-prepend">
                 <span className="input-group-text">
                   <i
                     className="fa fa-large fa-link"
-                    style={{ fontSize: "2em" }}
+                    style={{ fontSize: "200%" }}
                   />
                 </span>
               </div>
@@ -143,16 +154,14 @@ const LandingPage = () => {
                 placeholder="www.domain.com"
                 value={longUrl}
                 onChange={(e) => setLongUrl(e.target.value)}
-                style={{ fontSize: "2em" }}
+                style={{ fontSize: "150%" }}
               />
               <div className="input-group-append">
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{ fontSize: "2em" }}
-                >
-                  Generate &nbsp;
-                  <i className="fa fa-hand-peace-o" />
+                  style={{ fontSize: "200%" }}
+                ><i className="fa fa-rocket" />
                 </button>
               </div>
             </div>

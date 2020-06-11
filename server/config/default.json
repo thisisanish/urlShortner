@@ -1,4 +1,4 @@
 {
     "mongoURI": "mongodb://anish:12345a@ds317808.mlab.com:17808/lilurl",
-    "baseUrl": "http://lilurl.co"
+    "baseUrl": "http://teensygo.herokuapp.com"
 }
